@@ -1,0 +1,9 @@
+FROM fedora
+RUN yum update -y
+ENV PATH=/createrepo:${PATH}
+ENV LD_LIBRARY_PATH=/createrepo:${LD_LIBRARY_PATH}
+#RUN apt-get install -y libglib2.0
+#RUN apt-get install -y libcurl4-openssl-dev
+
+ADD ./build/dist/ /createrepo
+ENTRYPOINT ["createrepo_c"]
